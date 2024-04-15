@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head> 
+    <title>Kimmy's Website</title>
+
+    <link href="../static/styles/style.css" rel="stylesheet">
+</head>
+
+
+
+<!--comment 格式-->
+
+
+
+<body>
+
+<br>
+<br>
+<br>
+<br>
+<p id="time_english" style="font-size:120px" align="center">{{ NOW }}</p>
+<p id="time_chinese" style="font-size:120px" align="center">{{ Time }}</p>
+
+
+
+</br>
+</br>
+
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script>
+var time_english = document.getElementById("time_english");
+//var time_chinese = document.getElementById("time_chinese");
+setInterval(function(){
+    $.ajax({
+      url: "/gettime",
+      type: "get",
+
+      success: function(response) {
+        time_english.innerText = response.english;
+        //time_chinese.innerText = response.chinese;
+
+       },
+      error: function(xhr) {
+          //Handle error
+      }
+    });
+}, 1000);
+
+//var time_chinese = document.getElementById("time_chinese");
+
+</script>
+
+</html>
+
